@@ -7,7 +7,7 @@ export function validateEmail(email: string): FormValidation {
   if (!email) {
     return {
       isValid: false,
-      message: 'Email is required'
+      message: "Email is required",
     };
   }
 
@@ -16,12 +16,12 @@ export function validateEmail(email: string): FormValidation {
   if (!emailRegex.test(email)) {
     return {
       isValid: false,
-      message: 'Please enter a valid email address'
+      message: "Please enter a valid email address",
     };
   }
 
   return {
-    isValid: true
+    isValid: true,
   };
 }
 
@@ -32,19 +32,19 @@ export function generateTestEmail(): string {
 
 export const testData = {
   validEmails: [
-    'test@example.com',
-    'user.name@domain.com',
-    'user+label@domain.co.uk',
-    'user@subdomain.domain.com'
+    "test@example.com",
+    "user.name@domain.com",
+    "user+label@domain.co.uk",
+    "user@subdomain.domain.com",
   ],
   invalidEmails: [
-    '',
-    'invalid-email',
-    '@domain.com',
-    'user@',
-    'user@domain',
-    'user@.com',
-    'user@domain.',
-    'user name@domain.com'
-  ]
+    "",
+    "invalid-email",
+    "@domain.com",
+    "user@",
+    "user@domain",
+    "user@.com",
+    "user@domain.",
+    "user name@domain.com",
+  ],
 };

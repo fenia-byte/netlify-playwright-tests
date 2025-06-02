@@ -5,11 +5,13 @@ This repository contains automated tests for the Netlify website using Playwrigh
 ## Test Cases
 
 1. **Lead Capture Form Validation**
+
    - Validates newsletter form functionality
    - Tests form submission with valid/invalid data
    - Verifies user feedback
 
 2. **Sitemap and Crawlability Verification**
+
    - Verifies sitemap.xml existence and accessibility
    - Checks URL accessibility
    - Validates robots meta tags
@@ -20,12 +22,14 @@ This repository contains automated tests for the Netlify website using Playwrigh
 ## Setup Instructions
 
 1. Clone the repository:
+
    ```bash
    git clone <repository-url>
    cd netlify-playwright-tests
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
@@ -38,21 +42,25 @@ This repository contains automated tests for the Netlify website using Playwrigh
 ## Running Tests
 
 Run all tests:
+
 ```bash
 npx playwright test
 ```
 
 Run specific test file:
+
 ```bash
 npx playwright test tests/leadForm.spec.ts
 ```
 
 Run tests with UI mode:
+
 ```bash
 npx playwright test --ui
 ```
 
 View test report:
+
 ```bash
 npx playwright show-report
 ```

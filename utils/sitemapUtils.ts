@@ -1,4 +1,4 @@
-import { XMLParser } from 'fast-xml-parser';
+import { XMLParser } from "fast-xml-parser";
 
 interface SitemapUrl {
   loc: string;
@@ -16,20 +16,22 @@ interface SitemapData {
 export class SitemapError extends Error {
   constructor(message: string) {
     super(message);
-    this.name = 'SitemapError';
+    this.name = "SitemapError";
   }
 }
 
 export async function getSitemapUrls(sitemapUrl: string): Promise<string[]> {
   try {
     const response = await fetch(sitemapUrl);
-    
+
     if (!response.ok) {
-      throw new SitemapError(`Failed to fetch sitemap: ${response.status} ${response.statusText}`);
+      throw new SitemapError(
+        `Failed to fetch sitemap: ${response.status} ${response.statusText}`,
+      );
     }
 
-    const contentType = response.headers.get('content-type');
-    if (!contentType?.includes('xml')) {
+    const contentType = response.headers.get("content-type");
+    if (!contentType?.includes("xml")) {
       throw new SitemapError(`Invalid content type: ${contentType}`);
     }
 
@@ -42,13 +44,16 @@ export async function getSitemapUrls(sitemapUrl: string): Promise<string[]> {
     const data = parser.parse(xml) as SitemapData;
 
     if (!data.urlset || !data.urlset.url) {
-      throw new SitemapError('Invalid sitemap format: missing urlset or url entries');
+      throw new SitemapError(
+        "Invalid sitemap format: missing urlset or url entries",
+      );
     }
 
     // Handle both single URL and array of URLs
-    const urlEntries = Array.isArray(data.urlset.url) ? data.urlset.url : [data.urlset.url];
-    return urlEntries.map(entry => entry.loc);
-
+    const urlEntries = Array.isArray(data.urlset.url)
+      ? data.urlset.url
+      : [data.urlset.url];
+    return urlEntries.map((entry) => entry.loc);
   } catch (error) {
     if (error instanceof SitemapError) {
       throw error;
@@ -59,7 +64,7 @@ export async function getSitemapUrls(sitemapUrl: string): Promise<string[]> {
 
 export async function validateSitemapUrl(url: string): Promise<boolean> {
   try {
-    const response = await fetch(url, { method: 'HEAD' });
+    const response = await fetch(url, { method: "HEAD" });
     return response.ok;
   } catch {
     return false;
